@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class movement : MonoBehaviour
+{
+    public Rigidbody rd;
+    public float forwardForce = 2000f;
+    public float sidewaysForce = 500f;
+    // fixed updates for stuff with physics
+    void FixedUpdate()
+    {
+        rd.AddForce(0, 0, forwardForce * Time.deltaTime); // evens out so that people with higher frame rates dont go flying
+
+        if (Input.GetKey("d"))
+        {
+            rd.AddForce(sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+        }
+        if (Input.GetKey("a"))
+        {
+            rd.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+        }
+    }
+}
